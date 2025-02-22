@@ -1,0 +1,22 @@
+name: health_app
+description: A simple health tracker app that stores user profile data.
+publish_to: 'none' # Prevents accidental publishing
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.0 # Saves user data locally
+  fl_chart: ^0.63.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any # Ensures best coding practices
+
+flutter:
+  uses-material-design: true
