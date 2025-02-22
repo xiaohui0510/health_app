@@ -3,6 +3,7 @@
 A new Flutter project.
 
 hello world
+this is fir AI model
 
 ## Getting Started
 
