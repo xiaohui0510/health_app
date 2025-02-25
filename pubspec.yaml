@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.2.0 # Saves user data locally
   fl_chart: ^0.63.0
+  huggingface_dart: ^0.0.2
+  huggingface_client: ^1.6.1
 
 dev_dependencies:
   flutter_test:
