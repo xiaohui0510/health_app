@@ -20,7 +20,7 @@ class _ChatboxScreenState extends State<ChatboxScreen> {
   void initState() {
     super.initState();
     final client = HuggingFaceClient.getInferenceClient(
-      "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",
+      "hf_hmm",
       HuggingFaceClient.inferenceBasePath,
     );
     _inferenceApi = InferenceApi(client);
