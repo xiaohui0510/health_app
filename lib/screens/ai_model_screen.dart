@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:huggingface_client/huggingface_client.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatboxScreen extends StatefulWidget {
   const ChatboxScreen({super.key});
@@ -13,43 +14,41 @@ class _ChatboxScreenState extends State<ChatboxScreen> {
   final List<Map<String, String>> _messages = [];
   bool _isLoading = false;
 
-  // Initialize the Hugging Face client and inference API.
-  late final InferenceApi _inferenceApi;
+  late final GenerativeModel _model;
+  late final ChatSession _chatSession;
 
   @override
   void initState() {
     super.initState();
-    final client = HuggingFaceClient.getInferenceClient(
-      "hf_hmm",
-      HuggingFaceClient.inferenceBasePath,
-    );
-    _inferenceApi = InferenceApi(client);
+
+    // Load API key from .env file
+    final apiKey = dotenv.env['GOOGLE_AI_API_KEY'];
+
+    if (apiKey == null || apiKey.isEmpty) {
+      debugPrint("❌ API Key is missing. Please check your .env file.");
+      return;
+    }
+
+    // Initialize Google Generative AI Model
+    _model = GenerativeModel(model: 'gemini-1.5-flash-latest', apiKey: apiKey);
+    _chatSession = _model.startChat();
   }
 
+  /// Sends the user input to Google AI and gets a response.
   Future<void> _sendMessage() async {
     final input = _controller.text.trim();
     if (input.isEmpty) return;
 
     setState(() {
-      // Add the user's message to the conversation.
       _messages.add({'role': 'user', 'message': input});
       _isLoading = true;
     });
     _controller.clear();
 
     try {
-      // Prepare the query parameters for text generation.
-      final params = ApiQueryNLPTextGeneration(inputs: input);
-      // Query the model (using GPT‑2 as an example; replace with your model if needed).
-      final result = await _inferenceApi.queryNLPTextGeneration(
-        taskParameters: params,
-        model: 'microsoft/phi-1_5', // Test the model here
-      );
+      final response = await _chatSession.sendMessage(Content.text(input));
+      final generatedText = response.text ?? "No response received.";
 
-      // Process the result; assume that the first generated result is used.
-      final generatedText = (result != null && result.isNotEmpty)
-          ? (result.first?.generatedText ?? 'No response received.')
-          : 'No response received.';
       setState(() {
         _messages.add({'role': 'assistant', 'message': generatedText});
       });
@@ -64,6 +63,7 @@ class _ChatboxScreenState extends State<ChatboxScreen> {
     }
   }
 
+  /// Builds chat message bubbles.
   Widget _buildMessage(Map<String, String> message) {
     final isUser = message['role'] == 'user';
     return Container(
@@ -102,8 +102,7 @@ class _ChatboxScreenState extends State<ChatboxScreen> {
               child: CircularProgressIndicator(),
             ),
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
             child: Row(
               children: [
                 Expanded(
