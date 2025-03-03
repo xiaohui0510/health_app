@@ -3,6 +3,7 @@ import 'tracker_screen.dart';
 import 'trend_screen.dart';
 import 'user_profile_screen.dart';
 import 'ai_model_screen.dart';
+import 'test_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     const TrendScreen(),
     const UserProfileScreen(),
     const ChatboxScreen(),
+    const HealthApp(),
   ];
 
   void _onItemTapped(int index) {
@@ -89,6 +91,15 @@ class _MainScreenState extends State<MainScreen> {
                                   style: TextStyle(color: Colors.white))
                               : null,
                           onTap: () => _onItemTapped(3),
+                        ),
+                        ListTile(
+                          leading:
+                              const Icon(Icons.access_alarm_sharp, color: Colors.white),
+                          title: isExpanded
+                              ? const Text('Testing',
+                                  style: TextStyle(color: Colors.white))
+                              : null,
+                          onTap: () => _onItemTapped(4),
                         ),
                       ],
                     ),

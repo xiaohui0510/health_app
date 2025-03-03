@@ -24,13 +24,39 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        
+            <intent-filter>
+                <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+            </intent-filter>
+
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <activity-alias
+            android:name="ViewPermissionUsageActivity"
+            android:exported="true"
+            android:targetActivity=".MainActivity"
+            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
+                <intent-filter>
+                    <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+                    <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
+                </intent-filter>
+        </activity-alias>
+
     </application>
+    <!-- <activity-alias
+        android:name="ViewPermissionUsageActivity"
+        android:exported="true"
+        android:targetActivity=".MainActivity"
+        android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+                <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
+            </intent-filter>
+    </activity-alias> -->
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
          https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
@@ -41,5 +67,122 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
+        <package android:name="com.google.android.apps.healthdata" />
+        <intent>
+            <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+        </intent>
     </queries>
+
+    <!-- Steps (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_STEPS"/>
+    <uses-permission android:name="android.permission.health.WRITE_STEPS"/>
+    
+    <!-- Heart Rate (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_HEART_RATE"/>
+    <uses-permission android:name="android.permission.health.WRITE_HEART_RATE"/>
+    
+    <!-- Active Energy Burned (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_ACTIVE_ENERGY_BURNED"/>
+    <uses-permission android:name="android.permission.health.WRITE_ACTIVE_ENERGY_BURNED"/>
+
+    <!-- Sleep Data (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_SLEEP"/>
+    <uses-permission android:name="android.permission.health.WRITE_SLEEP"/>
+
+    <!-- Height (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_HEIGHT"/>
+    <uses-permission android:name="android.permission.health.WRITE_HEIGHT"/>
+
+    <!-- Weight (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_WEIGHT"/>
+    <uses-permission android:name="android.permission.health.WRITE_WEIGHT"/>
+
+    <!-- Lean Body Mass (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_LEAN_BODY_MASS"/>
+    <uses-permission android:name="android.permission.health.WRITE_LEAN_BODY_MASS"/>
+
+    <!-- Body Temperature (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_BODY_TEMPERATURE"/>
+    <uses-permission android:name="android.permission.health.WRITE_BODY_TEMPERATURE"/>
+
+    <!-- Blood Glucose (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_BLOOD_GLUCOSE"/>
+    <uses-permission android:name="android.permission.health.WRITE_BLOOD_GLUCOSE"/>
+
+    <!-- Blood Oxygen (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_BLOOD_OXYGEN"/>
+    <uses-permission android:name="android.permission.health.WRITE_BLOOD_OXYGEN"/>
+
+    <!-- Blood Pressure (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_BLOOD_PRESSURE"/>
+    <uses-permission android:name="android.permission.health.WRITE_BLOOD_PRESSURE"/>
+
+    <!-- Heart Rate Variability (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_HEART_RATE_VARIABILITY"/>
+    <uses-permission android:name="android.permission.health.WRITE_HEART_RATE_VARIABILITY"/>
+
+    <!-- Sleep Stages (REM, Deep, Awake) -->
+    <uses-permission android:name="android.permission.health.READ_SLEEP_STAGE"/>
+    <uses-permission android:name="android.permission.health.WRITE_SLEEP_STAGE"/>
+
+    <!-- Menstruation Flow Data -->
+    <uses-permission android:name="android.permission.health.READ_MENSTRUATION"/>
+    <uses-permission android:name="android.permission.health.WRITE_MENSTRUATION"/>
+
+    <!-- Required for fetching distance data related to workouts -->
+    <uses-permission android:name="android.permission.health.WRITE_DISTANCE"/>
+    <uses-permission android:name="android.permission.health.READ_DISTANCE"/>
+
+    <uses-permission android:name="android.permission.health.WRITE_EXERCISE"/>
+    <uses-permission android:name="android.permission.health.READ_EXERCISE"/>
+
+    <uses-permission android:name="android.permission.health.WRITE_TOTAL_CALORIES_BURNED"/>
+    <uses-permission android:name="android.permission.health.READ_TOTAL_CALORIES_BURNED"/>
+
+    <!-- Workout Data (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_WORKOUT"/>
+    <uses-permission android:name="android.permission.health.WRITE_WORKOUT"/>
+
+    <!-- Nutrition Data (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_NUTRITION"/>
+    <uses-permission android:name="android.permission.health.WRITE_NUTRITION"/>
+
+    <!-- Water Intake (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_WATER"/>
+    <uses-permission android:name="android.permission.health.WRITE_WATER"/>
+
+    <!-- Exercise Time (Read & Write) -->
+    <uses-permission android:name="android.permission.health.READ_EXERCISE_TIME"/>
+    <uses-permission android:name="android.permission.health.WRITE_EXERCISE_TIME"/>
+
+    <!-- Walking Heart Rate (Read Only) -->
+    <uses-permission android:name="android.permission.health.READ_WALKING_HEART_RATE"/>
+
+    <!-- Electrocardiogram (Read Only) -->
+    <uses-permission android:name="android.permission.health.READ_ELECTROCARDIOGRAM"/>
+
+    <!-- High Heart Rate Events (Read Only) -->
+    <uses-permission android:name="android.permission.health.READ_HIGH_HEART_RATE_EVENT"/>
+
+    <!-- Low Heart Rate Events (Read Only) -->
+    <uses-permission android:name="android.permission.health.READ_LOW_HEART_RATE_EVENT"/>
+
+    <!-- Irregular Heart Rate Events (Read Only) -->
+    <uses-permission android:name="android.permission.health.READ_IRREGULAR_HEART_RATE_EVENT"/>
+
+    <!-- Water Temperature (iOS Only) -->
+    <!-- Android does not support water temperature tracking in Health Connect -->
+
+    <!-- Underwater Depth (iOS Only) -->
+    <!-- Android does not support underwater depth tracking in Health Connect -->
+
+    <!-- Audiogram (iOS Only) -->
+    <!-- Android does not support audiogram tracking in Health Connect -->
+
+    <!-- Required for fetching step count and workout tracking -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+
+    <!-- Required for fetching location data related to workouts -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </manifest>
