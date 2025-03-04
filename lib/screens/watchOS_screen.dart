@@ -9,8 +9,8 @@ class WearableSupportScreen extends StatefulWidget {
 }
 
 class _WearableSupportScreenState extends State<WearableSupportScreen> {
-  bool isWearOSSupported = false;
-  bool isWatchOSSupported = false;
+  bool isWearOSSupported = true;
+  bool isWatchOSSupported = true;
 
   final FlutterWatchOsConnectivity _flutterWatchOsConnectivity =
       FlutterSmartWatch().watchOS;
