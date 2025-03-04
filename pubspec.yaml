@@ -20,6 +20,7 @@ dependencies:
   carp_serializable: ^2.0.0
   google_generative_ai: ^0.4.6
   flutter_dotenv: ^5.2.1
+  flutter_smart_watch: ^1.0.0
 
 dev_dependencies:
   flutter_test:

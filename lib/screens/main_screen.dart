@@ -3,7 +3,8 @@ import 'tracker_screen.dart';
 import 'trend_screen.dart';
 import 'user_profile_screen.dart';
 import 'ai_model_screen.dart';
-import 'test_screen.dart';
+import 'health_connect.dart';
+import 'watchOS_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -21,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     const UserProfileScreen(),
     const ChatboxScreen(),
     const HealthApp(),
+    const WearableSupportScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -84,8 +86,7 @@ class _MainScreenState extends State<MainScreen> {
                           onTap: () => _onItemTapped(2),
                         ),
                         ListTile(
-                          leading:
-                              const Icon(Icons.chat, color: Colors.white),
+                          leading: const Icon(Icons.chat, color: Colors.white),
                           title: isExpanded
                               ? const Text('Health Assistant',
                                   style: TextStyle(color: Colors.white))
@@ -93,13 +94,22 @@ class _MainScreenState extends State<MainScreen> {
                           onTap: () => _onItemTapped(3),
                         ),
                         ListTile(
-                          leading:
-                              const Icon(Icons.access_alarm_sharp, color: Colors.white),
+                          leading: const Icon(Icons.access_alarm_sharp,
+                              color: Colors.white),
                           title: isExpanded
                               ? const Text('Testing',
                                   style: TextStyle(color: Colors.white))
                               : null,
                           onTap: () => _onItemTapped(4),
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.watch_rounded,
+                              color: Colors.white),
+                          title: isExpanded
+                              ? const Text('Wear OS',
+                                  style: TextStyle(color: Colors.white))
+                              : null,
+                          onTap: () => _onItemTapped(5),
                         ),
                       ],
                     ),
