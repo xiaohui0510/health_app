@@ -5,6 +5,7 @@ import 'user_profile_screen.dart';
 import 'ai_model_screen.dart';
 import 'health_connect.dart';
 import 'watchOS_screen.dart';
+import 'bluetooth_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -22,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
     const UserProfileScreen(),
     const ChatboxScreen(),
     const HealthApp(),
-    const WearableSupportScreen()
+    const BleSmartWatchScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -103,10 +104,10 @@ class _MainScreenState extends State<MainScreen> {
                           onTap: () => _onItemTapped(4),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.watch_rounded,
+                          leading: const Icon(Icons.bluetooth,
                               color: Colors.white),
                           title: isExpanded
-                              ? const Text('Wear OS',
+                              ? const Text('Bluetooth',
                                   style: TextStyle(color: Colors.white))
                               : null,
                           onTap: () => _onItemTapped(5),
