@@ -123,7 +123,7 @@ class _MainScreenState extends State<MainScreen> {
                                   const Icon(Icons.person, color: Colors.white),
                               title: const Text('User Profile',
                                   style: TextStyle(color: Colors.white)),
-                              onTap: () => _onItemTapped(4),
+                              onTap: () => _onItemTapped(5),
                             ),
                           ],
                         ),
