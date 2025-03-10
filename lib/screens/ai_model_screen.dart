@@ -63,9 +63,26 @@ class _ChatboxScreenState extends State<ChatboxScreen> {
     }
   }
 
+  /// Parses a string with markdown bold syntax (i.e. **text**) and returns a TextSpan.
+  TextSpan _parseMarkdown(String text) {
+    List<String> parts = text.split('**');
+    List<TextSpan> spans = [];
+    // Even index: normal; odd index: bold
+    for (int i = 0; i < parts.length; i++) {
+      if (parts[i].isEmpty) continue;
+      if (i % 2 == 1) {
+        spans.add(TextSpan(text: parts[i], style: const TextStyle(fontWeight: FontWeight.bold)));
+      } else {
+        spans.add(TextSpan(text: parts[i]));
+      }
+    }
+    return TextSpan(children: spans, style: const TextStyle(fontSize: 16, color: Colors.black));
+  }
+
   /// Builds chat message bubbles.
   Widget _buildMessage(Map<String, String> message) {
     final isUser = message['role'] == 'user';
+    final messageText = message['message'] ?? '';
     return Container(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
@@ -75,10 +92,14 @@ class _ChatboxScreenState extends State<ChatboxScreen> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         padding: const EdgeInsets.all(12.0),
-        child: Text(
-          message['message'] ?? '',
-          style: const TextStyle(fontSize: 16),
-        ),
+        child: isUser
+            ? Text(
+                messageText,
+                style: const TextStyle(fontSize: 16),
+              )
+            : RichText(
+                text: _parseMarkdown(messageText),
+              ),
       ),
     );
   }

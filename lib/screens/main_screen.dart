@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'tracker_screen.dart';
-import 'trend_screen.dart';
+// import 'trend_screen.dart';
 import 'user_profile_screen.dart';
 import 'ai_model_screen.dart';
 import 'health_connect.dart';
-import 'watchOS_screen.dart';
-import 'bluetooth_screen.dart';
+// import 'watchOS_screen.dart';
+// import 'bluetooth_screen.dart';
 import 'map_screen.dart';
+import 'report_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,16 +20,17 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   bool _isSidebarExpanded = false; // Initially collapsed
   // You can adjust this offset if needed.
-  double _sidebarTopOffset = 100; 
+  double _sidebarTopOffset = 100;
 
   static final List<Widget> _pages = <Widget>[
     const TrackerScreen(),
-    const TrendScreen(),
-    const UserProfileScreen(),
+    const ReportScreen(),
+    // const TrendScreen(),
     const ChatboxScreen(),
     const HealthApp(),
-    const BleSmartWatchScreen(),
+    // const BleSmartWatchScreen(),
     const MapScreen(),
+    const UserProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -72,7 +74,8 @@ class _MainScreenState extends State<MainScreen> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+                          icon: const Icon(Icons.arrow_back_ios,
+                              color: Colors.white),
                           onPressed: _toggleSidebar,
                         ),
                       ),
@@ -81,39 +84,46 @@ class _MainScreenState extends State<MainScreen> {
                         child: ListView(
                           children: [
                             ListTile(
-                              leading: const Icon(Icons.track_changes, color: Colors.white),
-                              title: const Text('Tracker', style: TextStyle(color: Colors.white)),
+                              leading: const Icon(Icons.track_changes,
+                                  color: Colors.white),
+                              title: const Text('Health Tracker',
+                                  style: TextStyle(color: Colors.white)),
                               onTap: () => _onItemTapped(0),
                             ),
                             ListTile(
-                              leading: const Icon(Icons.show_chart, color: Colors.white),
-                              title: const Text('Trend', style: TextStyle(color: Colors.white)),
+                              leading: const Icon(Icons.report,
+                                  color: Colors.white),
+                              title: const Text('Health Report',
+                                  style: TextStyle(color: Colors.white)),
                               onTap: () => _onItemTapped(1),
                             ),
                             ListTile(
-                              leading: const Icon(Icons.person, color: Colors.white),
-                              title: const Text('View Profile', style: TextStyle(color: Colors.white)),
+                              leading:
+                                  const Icon(Icons.chat, color: Colors.white),
+                              title: const Text('Health Assistant',
+                                  style: TextStyle(color: Colors.white)),
                               onTap: () => _onItemTapped(2),
                             ),
                             ListTile(
-                              leading: const Icon(Icons.chat, color: Colors.white),
-                              title: const Text('Health Assistant', style: TextStyle(color: Colors.white)),
+                              leading: const Icon(Icons.data_array,
+                                  color: Colors.white),
+                              title: const Text('Health App',
+                                  style: TextStyle(color: Colors.white)),
                               onTap: () => _onItemTapped(3),
                             ),
                             ListTile(
-                              leading: const Icon(Icons.access_alarm_sharp, color: Colors.white),
-                              title: const Text('Testing', style: TextStyle(color: Colors.white)),
+                              leading:
+                                  const Icon(Icons.map, color: Colors.white),
+                              title: const Text('Hospital Nearby',
+                                  style: TextStyle(color: Colors.white)),
                               onTap: () => _onItemTapped(4),
                             ),
                             ListTile(
-                              leading: const Icon(Icons.bluetooth, color: Colors.white),
-                              title: const Text('Bluetooth', style: TextStyle(color: Colors.white)),
-                              onTap: () => _onItemTapped(5),
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.map, color: Colors.white),
-                              title: const Text('Google Map', style: TextStyle(color: Colors.white)),
-                              onTap: () => _onItemTapped(6),
+                              leading:
+                                  const Icon(Icons.person, color: Colors.white),
+                              title: const Text('User Profile',
+                                  style: TextStyle(color: Colors.white)),
+                              onTap: () => _onItemTapped(4),
                             ),
                           ],
                         ),
