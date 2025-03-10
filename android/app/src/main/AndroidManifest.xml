@@ -5,7 +5,7 @@
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyDW-HL3DTxejG05ip8_sDG2mHDTFsMEKlw"/>
+               android:value="Google APi Key"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
